@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import random
 class Kostka:
   """
   Trida reprezentujici hraci kostku.
@@ -9,7 +10,6 @@ class Kostka:
     self.pocetSten = pocetSten
 
   def hod(self):
-    import random
     return random.randint(1, self.pocetSten)
 
   def __str__(self):
