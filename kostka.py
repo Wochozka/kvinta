@@ -13,8 +13,9 @@ class Kostka:
     return random.randint(1, self.pocetSten)
 
   def __str__(self):
-    return "Kostka s {0} stenami.".format(self.pocetSten)
+    return f"Kostka s {self.pocetSten} stenami."
 
 if __name__=="__main__":
-    k = Kostka()
+    k = Kostka(12)
+    print(k)
     print(k.hod())
