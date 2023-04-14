@@ -33,14 +33,32 @@ class Bojovnik:
         celkem = 15
         pocet = int(self.__zivot / self.__max_zivot * celkem)
         return f"[{'#'*pocet}{' '*(celkem-pocet)}]"
+    
+    def utok(self, souper):
+        uder = self.__utok + self.__kostka.hod()
+        souper.obrana(uder)
+    
+    def obrana(self, uder):
+        obrana = self.__obrana + self.__kostka.hod()
+        zraneni = uder - obrana
+        if zraneni > 0:
+            self.__zivot = self.__zivot - zraneni
+        else:
+            print("Souper zcela odrazil utok.")
 
 
 if __name__=="__main__":
     k = kostka.Kostka(10)
-    b = Bojovnik("Zlatka", 5, 10, 8, k)
-    print(b)
-    print(b.nazivu)
-    print(b.graficky_zivot())
-    print(k.hod())
-  
+    a = Bojovnik("Zlatka", 70, 10, 8, k)
+    b = Bojovnik("Terka", 60, 15, 9, k)
+
+    print(a, a.graficky_zivot())
+    print(b, b.graficky_zivot())
+    a.utok(b)
+    print(a, a.graficky_zivot())
+    print(b, b.graficky_zivot())
+    b.utok(a)
+    print(a, a.graficky_zivot())
+    print(b, b.graficky_zivot())
+
 
