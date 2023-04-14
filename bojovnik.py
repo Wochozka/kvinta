@@ -21,6 +21,7 @@ class Bojovnik:
         self.__utok = utok
         self.__obrana = obrana
         self.__kostka = kostka
+        self._zprava = ""
 
     def __str__(self):
         return f"Bojovnik jmenem {self.__jmeno}."
@@ -43,8 +44,17 @@ class Bojovnik:
         zraneni = uder - obrana
         if zraneni > 0:
             self.__zivot = self.__zivot - zraneni
+            if self.__zivot <= 0:
+                self.__zivot = 0
+                self._zprava = "Souper zemrel."
         else:
-            print("Souper zcela odrazil utok.")
+            self._zprava = "Souper zcela odrazil utok."
+    
+    def getZprava(self):
+        return self._zprava
+    
+    def setZprava(self, zprava):
+        self._zprava = zprava
 
 
 if __name__=="__main__":
@@ -52,13 +62,17 @@ if __name__=="__main__":
     a = Bojovnik("Zlatka", 70, 10, 8, k)
     b = Bojovnik("Terka", 60, 15, 9, k)
 
-    print(a, a.graficky_zivot())
-    print(b, b.graficky_zivot())
-    a.utok(b)
-    print(a, a.graficky_zivot())
-    print(b, b.graficky_zivot())
-    b.utok(a)
-    print(a, a.graficky_zivot())
-    print(b, b.graficky_zivot())
+    while a.nazivu and b.nazivu:
+        a.utok(b)
+        print(a, a.getZprava())
+        print(a.graficky_zivot())
+        b.utok(a)
+        print(b, b.getZprava())
+        print(b.graficky_zivot())
+        x = input()
+    print(a, a.getZprava())
+    print(b, b.getZprava())
+
+        
 
 
