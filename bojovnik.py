@@ -40,15 +40,16 @@ class Bojovnik:
         souper.obrana(uder)
     
     def obrana(self, uder):
-        obrana = self.__obrana + self.__kostka.hod()
-        zraneni = uder - obrana
+        zraneni = uder - (self.__obrana + self.__kostka.hod())
+        zprava = f"{self.__jmeno} utrpel zranei o sile {zraneni}."
         if zraneni > 0:
             self.__zivot = self.__zivot - zraneni
             if self.__zivot <= 0:
                 self.__zivot = 0
-                self._zprava = "Souper zemrel."
+                zprava = zprava[:-1] + " a zemrel."
         else:
-            self._zprava = "Souper zcela odrazil utok."
+            zprava = f"{self.__jmeno} zcela odrazil utok."
+        self.setZprava(zprava)
     
     def getZprava(self):
         return self._zprava
