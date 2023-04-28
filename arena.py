@@ -11,6 +11,10 @@ class Arena():
         self._kostka = kostka
     
     def zapas(self):
+        import random as _random
+        
+        if _random.randint(0,1):
+            (self.__bojovnik1, self.__bojovnik2) = (self.__bojovnik2, self.__bojovnik1)
         
         while self.__bojovnik1.nazivu and self.__bojovnik2.nazivu:
             self.__bojovnik1.utok(self.__bojovnik2)
@@ -52,7 +56,7 @@ class Arena():
 
 if __name__=="__main__":
     k1 = kostka.Kostka()
-    b1 = bojovnik.Bojovnik("Adam", 100, 40, 30, k1)
+    b1 = bojovnik.Bojovnik("Adam", 100, 50, 30, k1)
     b2 = bojovnik.Bojovnik("Karel", 120, 35, 33, k1)
 
     a = Arena(b1, b2, k1)
